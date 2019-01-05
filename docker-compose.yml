@@ -1,0 +1,28 @@
+version: '2.1'
+
+services:
+  laravel-docker:
+    image: laravel-docker
+    build:
+      context: .
+      dockerfile: .docker/DockerFile
+    ports:
+      - 9090:80
+    volumes:
+      - .:/var/www/html/laravel-docker
+    links: 
+      - mysql
+    environment:
+      DB_HOST: mysql
+      DB_DATABASE: laravel_docker 
+      DB_USERNAME: root
+      DB_PASSWORD: masukganti123
+  mysql:
+    image: mysql:5.6
+    ports:
+      - 13306:3306
+    environment:
+      MYSQL_DATABASE: laravel_docker
+      MYSQL_USER: root 
+      MYSQL_PASSWORD: masukganti123
+      MYSQL_ROOT_PASSWORD: masukganti123
